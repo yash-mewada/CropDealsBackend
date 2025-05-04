@@ -280,3 +280,4 @@ C:\dotnet\CropDeals\obj\Debug\net8.0\refint\CropDeals.dll
 C:\dotnet\CropDeals\obj\Debug\net8.0\CropDeals.pdb
 C:\dotnet\CropDeals\obj\Debug\net8.0\CropDeals.genruntimeconfig.cache
 C:\dotnet\CropDeals\obj\Debug\net8.0\ref\CropDeals.dll
+C:\dotnet\CropDeals\obj\Debug\net8.0\CropDeals.sourcelink.json

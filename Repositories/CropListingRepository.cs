@@ -38,7 +38,7 @@ public class CropListingRepository : ICropListingRepository
         listing.Status = Enum.TryParse<CropAvailability>(request.Status, true, out var parsedStatus)
             ? parsedStatus
             : CropAvailability.Available;
-        listing.ImageUrl = request.ImageUrl;
+        listing.ImageBase64 = request.ImageBase64;
         listing.Description = request.Description;
 
         _context.CropListings.Update(listing);

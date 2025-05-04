@@ -61,7 +61,7 @@ public class CropController : ControllerBase
     }
 
     [HttpGet("admin-crops")]
-    [Authorize(Roles = "Admin")] // ✅ Only Admins can access
+    [Authorize(Roles = "Farmer,Admin")] // ✅ Only Admins can access
     public async Task<ActionResult<IEnumerable<CropDto>>> GetAdminCrops()
     {
         var crops = await _cropRepository.GetAllCropsAsync();
