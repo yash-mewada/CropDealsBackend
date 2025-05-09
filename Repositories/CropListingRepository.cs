@@ -98,5 +98,14 @@ public class CropListingRepository : ICropListingRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task<CropListing?> GetDetailsByIdAsync(Guid listingId)
+    {
+        return await _context.CropListings
+            .Include(cl => cl.Crop)
+            .Include(cl => cl.Farmer)
+                .ThenInclude(f => f.Address)
+            .FirstOrDefaultAsync(cl => cl.Id == listingId && cl.Status == CropAvailability.Available);
+    }
+
 
 }

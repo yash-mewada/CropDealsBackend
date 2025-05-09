@@ -11,5 +11,6 @@ public interface ICropListingRepository
     Task<IEnumerable<CropListing>> GetListingsByDealerLocationAsync(Guid dealerId);
     Task<IEnumerable<CropListing>> GetListingsByFarmerAsync(Guid farmerId);
     Task<IEnumerable<CropListing>> SearchListingsByCropNameAsync(string cropName);
+    Task<CropListing?> GetDetailsByIdAsync(Guid listingId);
 
 }

@@ -109,5 +109,30 @@ public class CropListingController : ControllerBase
         return Ok("Crop listing deleted successfully.");
     }
 
+    [HttpGet("{id}/details")]
+    [Authorize(Roles = "Dealer,Admin")] 
+    public async Task<IActionResult> GetListingDetails(Guid id)
+    {
+        var listing = await _listingRepo.GetDetailsByIdAsync(id);
+        if (listing == null)
+            return NotFound("Listing not found or is out of stock.");
+
+        var dto = new CropListingDetailsDto
+        {
+            CropName = listing.Crop.Name,
+            Description = listing.Description,
+            ImageBase64 = listing.ImageBase64,
+            PricePerKg = listing.PricePerKg,
+            Quantity = listing.Quantity,
+            FarmerName = listing.Farmer.Name,
+            FarmerPhoneNumber = listing.Farmer.PhoneNumber,
+            Street = listing.Farmer.Address?.Street ?? "",
+            City = listing.Farmer.Address?.City ?? "",
+            State = listing.Farmer.Address?.State ?? "",
+            ZipCode = listing.Farmer.Address?.ZipCode ?? ""
+        };
+
+        return Ok(dto);
+    }
 
 }
