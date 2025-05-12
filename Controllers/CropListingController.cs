@@ -119,6 +119,7 @@ public class CropListingController : ControllerBase
 
         var dto = new CropListingDetailsDto
         {
+            ListingId = listing.Id.ToString(),
             CropName = listing.Crop.Name,
             Description = listing.Description,
             ImageBase64 = listing.ImageBase64,
