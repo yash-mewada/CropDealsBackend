@@ -1,4 +1,5 @@
+using CropDeals.Models;
 public interface ITransactionRepository
 {
-    Task<string> CreateTransactionAsync(Guid dealerId, CreateTransactionRequest request);
+    Task<Transaction?> CreateTransactionAsync(Guid dealerId, CreateTransactionRequest request);
 }

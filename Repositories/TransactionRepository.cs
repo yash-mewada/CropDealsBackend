@@ -12,15 +12,14 @@ public class TransactionRepository : ITransactionRepository
         _context = context;
     }
 
-    public async Task<string> CreateTransactionAsync(Guid dealerId, CreateTransactionRequest request)
+    public async Task<Transaction?> CreateTransactionAsync(Guid dealerId, CreateTransactionRequest request)
     {
         var listing = await _context.CropListings.FindAsync(request.ListingId);
-        if (listing == null) return "Crop listing not found.";
+        if (listing == null) return null;
 
         if (listing.Quantity < request.Quantity)
-            return "Requested quantity exceeds available stock.";
+            return null;
 
-        // Calculate total
         float totalPrice = request.FinalPricePerKg * request.Quantity;
 
         var transaction = new Transaction
@@ -46,6 +45,7 @@ public class TransactionRepository : ITransactionRepository
         _context.CropListings.Update(listing);
         await _context.SaveChangesAsync();
 
-        return "Transaction completed successfully.";
+        return transaction;
     }
+
 }

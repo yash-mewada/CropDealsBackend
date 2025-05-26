@@ -23,8 +23,8 @@ public class TransactionController : ControllerBase
 
         var result = await _transactionRepo.CreateTransactionAsync(Guid.Parse(dealerId), request);
 
-        if (result.Contains("not found") || result.Contains("exceeds"))
-            return BadRequest(result);
+        if (result == null)
+            return BadRequest("Crop listing not found or quantity exceeds available stock.");
 
         return Ok(result);
     }
