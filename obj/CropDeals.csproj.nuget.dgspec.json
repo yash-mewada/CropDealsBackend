@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dotnet\\CropDeals\\CropDeals.csproj": {}
+    "D:\\dotnet\\cropdealsnew\\CropDeals\\CropDeals.csproj": {}
   },
   "projects": {
-    "C:\\dotnet\\CropDeals\\CropDeals.csproj": {
+    "D:\\dotnet\\cropdealsnew\\CropDeals\\CropDeals.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dotnet\\CropDeals\\CropDeals.csproj",
+        "projectUniqueName": "D:\\dotnet\\cropdealsnew\\CropDeals\\CropDeals.csproj",
         "projectName": "CropDeals",
-        "projectPath": "C:\\dotnet\\CropDeals\\CropDeals.csproj",
-        "packagesPath": "C:\\Users\\Welcome\\.nuget\\packages\\",
-        "outputPath": "C:\\dotnet\\CropDeals\\obj\\",
+        "projectPath": "D:\\dotnet\\cropdealsnew\\CropDeals\\CropDeals.csproj",
+        "packagesPath": "C:\\Users\\yash\\.nuget\\packages\\",
+        "outputPath": "D:\\dotnet\\cropdealsnew\\CropDeals\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Welcome\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\yash\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -97,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
