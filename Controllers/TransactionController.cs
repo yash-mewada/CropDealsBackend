@@ -28,4 +28,15 @@ public class TransactionController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet("dealer")]
+    public async Task<IActionResult> GetDealerTransactions()
+    {
+        var dealerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (dealerId == null) return Unauthorized("Dealer not authenticated");
+
+        var transactions = await _transactionRepo.GetTransactionsByDealerIdAsync(Guid.Parse(dealerId));
+        return Ok(transactions);
+    }
+
 }

@@ -48,4 +48,12 @@ public class TransactionRepository : ITransactionRepository
         return transaction;
     }
 
+    public async Task<List<Transaction>> GetTransactionsByDealerIdAsync(Guid dealerId)
+    {
+        return await _context.Transactions
+            .Where(t => t.DealerId == dealerId)
+            .Include(t => t.Listing) // This brings in the listing details
+            .ToListAsync();
+    }
+
 }
