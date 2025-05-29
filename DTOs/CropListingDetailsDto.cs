@@ -1,3 +1,5 @@
+using CropDeals.Models;
+
 public class CropListingDetailsDto
 {
     public string ListingId { get; set; }
@@ -11,6 +13,7 @@ public class CropListingDetailsDto
     // Farmer Info
     public string FarmerName { get; set; }
     public string FarmerPhoneNumber { get; set; }
+    public Crop Crop;
 
     // Location
     public string Street { get; set; }

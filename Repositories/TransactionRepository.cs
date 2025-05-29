@@ -1,4 +1,5 @@
 using CropDeals.Data;
+using CropDeals.DTOs;
 using CropDeals.Models;
 using CropDeals.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
@@ -48,12 +49,32 @@ public class TransactionRepository : ITransactionRepository
         return transaction;
     }
 
-    public async Task<List<Transaction>> GetTransactionsByDealerIdAsync(Guid dealerId)
+    public async Task<List<TransactionDTO>> GetTransactionsByDealerIdAsync(Guid dealerId)
     {
         return await _context.Transactions
             .Where(t => t.DealerId == dealerId)
-            .Include(t => t.Listing) // This brings in the listing details
+            .Include(t => t.Dealer)
+            .Include(t => t.Listing)
+                .ThenInclude(l => l.Crop)
+            .Include(t => t.Listing)
+                .ThenInclude(l => l.Farmer)
+            .Select(t => new TransactionDTO
+            {
+                Id = t.Id,
+                DealerId = t.DealerId,
+                DealerName = t.Dealer.Name,
+                ListingId = t.ListingId,
+                CropName = t.Listing.Crop.Name,
+                FarmerName = t.Listing.Farmer.Name,
+                Description = t.Listing.Description,
+                ImageBase64 = t.Listing.ImageBase64,
+                Quantity = t.Quantity,
+                FinalPricePerKg = t.FinalPricePerKg,
+                TotalPrice = t.TotalPrice,
+                Status = t.Status,
+                CreatedAt = t.CreatedAt,
+                UpdatedAt = t.UpdatedAt
+            })
             .ToListAsync();
     }
-
 }
