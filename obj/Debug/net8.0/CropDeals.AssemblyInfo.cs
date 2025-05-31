@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CropDeals")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39b41695f2e24f02731e2c7fbdb086984efeb77e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dca6108cfdea30dbf722b2fe441c1c5fbdfee38b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CropDeals")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CropDeals")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -39,5 +39,33 @@ namespace CropDeals.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<ListingNotificationDTO>> GetNotificationsAsync(Guid dealerId)
+        {
+            var subscribedCropIds = await _context.Subscriptions
+                .Where(s => s.DealerId == dealerId)
+                .Select(s => s.CropId)
+                .ToListAsync();
+
+            var listings = await _context.CropListings
+                .Include(l => l.Crop)
+                .Include(l => l.Farmer)
+                .Where(l => subscribedCropIds.Contains(l.CropId) && l.Status == 0)
+                .OrderByDescending(l => l.CreatedAt)
+                .Select(l => new ListingNotificationDTO
+                {
+                    ListingId = l.Id,
+                    CropName = l.Crop.Name,
+                    FarmerName = l.Farmer.Name,
+                    PricePerKg = (decimal)l.PricePerKg,
+                    Quantity = l.Quantity,
+                    Description = l.Description,
+                    CreatedAt = l.CreatedAt,
+                    Status = l.Status
+                })
+                .ToListAsync();
+
+            return listings;
+        }
     }
 }

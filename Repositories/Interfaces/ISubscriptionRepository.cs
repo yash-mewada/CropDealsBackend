@@ -8,5 +8,7 @@ namespace CropDeals.Repositories.Interfaces
         Task<Subscription> AddSubscriptionAsync(Guid dealerId, Subscription subscription);
         Task<IEnumerable<Subscription>> GetDealerSubscriptionsAsync(Guid dealerId);
         Task<bool> UnsubscribeAsync(Guid id, Guid dealerId);
+        Task<List<ListingNotificationDTO>> GetNotificationsAsync(Guid dealerId);
+
     }
 }

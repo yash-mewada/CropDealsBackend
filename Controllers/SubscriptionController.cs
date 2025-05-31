@@ -49,5 +49,13 @@ namespace CropDeals.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("notifications")]
+        public async Task<IActionResult> GetNotifications()
+        {
+            var dealerId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var notifications = await _repository.GetNotificationsAsync(dealerId);
+            return Ok(notifications);
+        }
     }
 }
