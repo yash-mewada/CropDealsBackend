@@ -27,4 +27,17 @@ public class ReviewController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet("my-reviews")]
+    [Authorize(Roles = "Dealer,Farmer")]
+    public async Task<IActionResult> GetMyReviews()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var role = User.FindFirstValue(ClaimTypes.Role);
+
+        var reviews = await _reviewRepo.GetMyReviewsAsync(userId, role);
+
+        return Ok(reviews);
+    }
+
 }

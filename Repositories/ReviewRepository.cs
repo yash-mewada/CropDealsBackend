@@ -45,5 +45,38 @@ namespace CropDeals.Repositories
 
             return "Review added successfully.";
         }
+
+        public async Task<List<ReviewDTO>> GetMyReviewsAsync(string userId, string role)
+        {
+            Guid userGuid = Guid.Parse(userId);
+
+            var query = _context.Reviews
+                .Include(r => r.Dealer)
+                .Include(r => r.Farmer)
+                .AsQueryable();
+
+            if (role == "Dealer")
+                query = query.Where(r => r.DealerId == userGuid);
+            else if (role == "Farmer")
+                query = query.Where(r => r.FarmerId == userGuid);
+            else
+                return new List<ReviewDTO>(); // Unauthorized roles
+
+            return await query
+                .Select(r => new ReviewDTO
+                {
+                    Id = r.Id,
+                    DealerId = r.DealerId,
+                    DealerName = r.Dealer.Name,
+                    FarmerId = r.FarmerId,
+                    FarmerName = r.Farmer.Name,
+                    TransactionId = r.TransactionId,
+                    Rating = r.Rating,
+                    Comment = r.Comment,
+                    CreatedAt = r.CreatedAt
+                })
+                .ToListAsync();
+        }
+
     }
 }
